@@ -1,12 +1,47 @@
-h1 {
-    color: #27aedb;
-    text-align: center;
-    }
-    
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-button{
-    color: #27aedb;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+#main {
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.btn-container {
+  margin-bottom: 20px;
+}
+
+button {
+  margin: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.menu-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu-item {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.menu-item img {
+  width: 100%;
+  height: auto;
+}
+
+.menu-info {
+  margin-top: 10px;
 }
