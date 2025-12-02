@@ -14,7 +14,7 @@ const allCategories = ["all","breakfast","lunch","shakes"]
  const finalArr = ["all",...tempArr]
 
 //2nd way
- tempArr.unshift("all")
+// tempArr.unshift("all")
  console.log(tempArr,finalArr)
 
  const allCategories = ["all",...new Set(items.map((item)=>item.category))]
