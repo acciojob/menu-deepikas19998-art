@@ -1,33 +1,30 @@
-import React from "react";
+import React from "react"
 
-function Menu({ items, activeCategory }) {
-  const filtered =
-    activeCategory === "All"
-      ? items
-      : items.filter((item) => item.category === activeCategory);
+const Menu = ({items}) => {
+    return(
+        <div className="section-center">
+            {
+                items.map((menuItem)=>{
 
-  return (
-    <div className="menu-container">
-      {filtered.map((dish) => {
-        const testId =
-          dish.category === "Breakfast"
-            ? "menu-item-breakfast"
-            : dish.category === "Lunch"
-            ? "menu-item-lunch"
-            : "menu-item-shakes";
+                    const {id,title,img,desc,price, category} = menuItem;
 
-        return (
-          <div className="menu-item" key={dish.id} data-test-id={testId}>
-            <img src={dish.img} alt={dish.title} />
-            <div className="menu-info">
-              <h3>{dish.title}</h3>
-              <p>{dish.price}</p>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+                    return(
+                        <article category={category} key={id} className="menu-item " data-test-id={`menu-item-${category}`} >
+                            <img src={img} alt={title} className="photo" />
+                            <div className="item-info">
+                                <header>
+                                    <h4>{title}</h4>
+                                    <h4 className="price">$ {price}</h4>
+                                    
+                                </header>
+                                <p className="item-text">{desc}</p>
+                            </div>
+                        </article>
+                    )
+                })
+            }
+        </div>
+    )
 }
 
-export default Menu;
+export default Menu
