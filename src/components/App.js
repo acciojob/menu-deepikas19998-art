@@ -1,51 +1,90 @@
 import React, { useState } from "react";
-import items from "./data";
-import Categories from "./Categories";
-import Menu from "./Menu"
+import Menu from "./Menu";
+import "./styles.css";
 
-import '../styles/App.css';
+const dishes = [
+  {
+    id: 1,
+    title: "Pancakes",
+    category: "Breakfast",
+    price: "$8.99",
+    img: "https://via.placeholder.com/150"
+  },
+  {
+    id: 2,
+    title: "Omelette",
+    category: "Breakfast",
+    price: "$7.99",
+    img: "https://via.placeholder.com/150"
+  },
+  {
+    id: 3,
+    title: "Burger",
+    category: "Lunch",
+    price: "$12.99",
+    img: "https://via.placeholder.com/150"
+  },
+  {
+    id: 4,
+    title: "Sandwich",
+    category: "Lunch",
+    price: "$10.99",
+    img: "https://via.placeholder.com/150"
+  },
+  {
+    id: 5,
+    title: "Chocolate Shake",
+    category: "Shakes",
+    price: "$5.99",
+    img: "https://via.placeholder.com/150"
+  },
+  {
+    id: 6,
+    title: "Vanilla Shake",
+    category: "Shakes",
+    price: "$5.49",
+    img: "https://via.placeholder.com/150"
+  }
+];
 
-const allCategories = ["all","breakfast","lunch","shakes"]
- const allCat = items.map(item=>item.category)
- const tempSet = new Set(allCat)
- let tempArr = [...tempSet]
+function App() {
+  const [activeCategory, setActiveCategory] = useState("All");
 
-// 1st way
- const finalArr = ["all",...tempArr]
+  const handleFilter = (category) => {
+    setActiveCategory(category);
+  };
 
-//2nd way
-// tempArr.unshift("all")
- console.log(tempArr,finalArr)
+  return (
+    <div id="main">
+      <h1 className="title">Menu</h1>
 
- const allCategories = ["all",...new Set(items.map((item)=>item.category))]
+      {/* Category Buttons */}
+      <div className="btn-container">
+        <button
+          id="filter-btn-1"
+          onClick={() => handleFilter("Breakfast")}
+        >
+          Breakfast
+        </button>
 
-const App = () => {
+        <button
+          id="filter-btn-2"
+          onClick={() => handleFilter("Lunch")}
+        >
+          Lunch
+        </button>
 
-    const [menuItems,setMenuItems] = useState(items)
-    const [categories,setCategories] = useState(allCategories)
+        <button
+          id="filter-btn-3"
+          onClick={() => handleFilter("Shakes")}
+        >
+          Shakes
+        </button>
+      </div>
 
-
-    const filterItems = (categoryName) => {
-        if(categoryName === "all"){
-            setMenuItems(items)
-        }else{
-            const newItems = items.filter((item)=>item.category===categoryName)
-            setMenuItems(newItems)
-        }
-    }
-    return(
-        <main id="main">
-            <section className="menu section">
-                <div className="title">
-                    <h2>Our Menu</h2>
-                    <div className="underline"></div>    
-                </div>
-                <Categories categories={categories} filterItems={filterItems}/>
-                <Menu items={menuItems} />
-            </section>
-        </main>
-    )
-
+      <Menu items={dishes} activeCategory={activeCategory} />
+    </div>
+  );
 }
 
 export default App;
